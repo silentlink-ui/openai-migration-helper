@@ -41,3 +41,28 @@ response = client.chat.completions.create(
 - Vision models (GPT-4V compatible)
 
 See `helper.py` for automatic model mapping and migration checklist.
+
+
+---
+## Real Migration Case Study (May 2026)
+
+A production chatbot migrated from GPT-4o to DeepSeek V4 Flash via Global API:
+
+```python
+# Before: GPT-4o ($10/M output, $2.50/M input)
+# After: DeepSeek V4 Flash ($0.25/M output, $0.13/M input)
+# Result: 97.5% cost reduction, no quality loss for FAQ-type queries
+
+from openai import OpenAI
+client = OpenAI(
+    api_key="ga_yourkey",
+    base_url="https://global-apis.com/v1"
+)
+# Same code, just change model name
+resp = client.chat.completions.create(
+    model="deepseek-chat",  # was "gpt-4o"
+    messages=[{"role": "user", "content": query}]
+)
+```
+
+Monthly bill: $420 -> $28. Full story: [dev.to/truelane](https://dev.to/truelane)
