@@ -28,7 +28,7 @@ client = OpenAI(
 
 # Everything else stays the same
 response = client.chat.completions.create(
-    model="deepseek-chat",  # or qwen3-32b, glm-5, kimi-k2.5
+    model="deepseek-ai/DeepSeek-V4-Flash",  # or qwen3-32b, glm-5, kimi-k2.5
     messages=[{"role": "user", "content": "Hello!"}],
 )
 ```
